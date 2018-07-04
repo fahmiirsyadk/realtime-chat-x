@@ -3,10 +3,11 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "node server.js"
   },
   "dependencies": {
     "babel-plugin-styled-components": "^1.5.1",
+    "express": "^4.16.3",
     "next": "^6.1.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
