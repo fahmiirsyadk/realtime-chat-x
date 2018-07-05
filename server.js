@@ -12,9 +12,12 @@ io.on('connection', socket => {
     console.log('user disconnected')
   })
   socket.on('chat message', msg => {
-    console.log('message: ' + msg)
+    io.emit('chat message', msg)
   })
 })
+io.emit('some event', {
+    for: 'everyone'
+  })
 
 server.listen(4000, () => {
   console.log('The server is running: http://localhost:4000')
