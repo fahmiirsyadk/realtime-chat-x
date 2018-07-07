@@ -6,13 +6,21 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html')
 })
 
-io.on('connection', socket => {
+io.on('connection', (socket) => {
   console.log('a user connected')
+  // default username , why im using date ?
+  // is tricky dude i want unique id every connection created
+  var currentdate = new Date()
+  socket.username = 'Anonymous ' + currentdate.getDay() + currentdate.getMilliseconds()
   socket.on('disconnect', () => {
+    io.emit('disconnect')
     console.log('user disconnected')
   })
-  socket.on('chat message', msg => {
-    io.emit('chat message', msg)
+  socket.on('chat_message', (data) => {
+    io.sockets.emit('chat_message', {message: data.message, username: socket.username})
+  })
+  socket.on('typing',(data) =>{
+    socket.broadcast.emit('typing', {username: socket.username})
   })
 })
 io.emit('some event', {

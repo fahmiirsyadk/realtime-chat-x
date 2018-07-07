@@ -1,8 +1,6 @@
 {
   "name": "realtime-chat-x",
   "scripts": {
-    "dev": "next",
-    "build": "next build",
     "start": "node server.js"
   },
   "dependencies": {
