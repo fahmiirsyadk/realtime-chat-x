@@ -22,7 +22,7 @@ for yarn user :
 ``` bash
 git clone https://github.com/blubMe/realtime-chat-x-static.git
 cd realtime-chat-x-static
-yarn start
+yarn
 ```
 
 ## Usage
