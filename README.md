@@ -2,7 +2,7 @@
 
 Realtime chat web app using Node.js, Express.js and Socket.io
 
-**Help me to improve with some pull request or open issues 
+<b>Help me to improve with some pull request or open issues</b>
 
 ## Installation
 ### required tools 
