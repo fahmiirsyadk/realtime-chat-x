@@ -123,18 +123,19 @@
                 }
                 log(message);
             }
-
             // Emit message
             sendMessage.submit((e) => {
                 e.preventDefault();
-                socket.emit('chat_message', {message: message.val()})
+                socket.emit('chat_message', {
+                    message: message.val(),
+                })
+                // after sending fill input val to empty string
                 message.val('')
             })
 
             // listening for new messages
             socket.on('chat_message',(data) =>{
-                console.log(data)
-                chatlog.append('<li>' + '⫸ [' + data.username + '] ● ' + data.message + '</li>')
+                chatlog.append('<li>' + ' [' + data.username + '] ⫸ ● ' + data.message + '</li>')
             })
 
             //emit typing
@@ -154,13 +155,15 @@
 
             //listening for new visitor
             socket.on('user_joined', (data) =>{
+                let time = data.timeHour + ' : ' + data.timeMin + ' : ' + data.timeSec
                 clientCount.text(data.numClient + ' users online')
-                chatlog.append($('<p style="color: yellowgreen; margin-bottom: 3px;">').text(' ヽ(゜∇゜)ノ hello [ ' + data.username + ' ]'))
+                chatlog.append($('<p style="color: yellowgreen; margin-bottom: 3px;">').text(time + ' - ' +' ヽ(゜∇゜)ノ hello [ ' + data.username + ' ]'))
             })
             //listening for leaving gf :(
             socket.on('user_left', (data) =>{
+                let time = data.timeHour + ' : ' + data.timeMin + ' : ' + data.timeSec
                 clientCount.text(data.numClient + ' users online')
-                chatlog.append($('<p style="color: orange; margin-bottom: 3px;">').text(' (☉‿☉✿) oh fam [ ' + data.username + ' ] leave...'))
+                chatlog.append($('<p style="color: orange; margin-bottom: 3px;">').text(time + ' - ' +'(☉‿☉✿) oh fam [ ' + data.username + ' ] leave...'))
             })
             //listening for typing
             socket.on('typing', (data) =>{

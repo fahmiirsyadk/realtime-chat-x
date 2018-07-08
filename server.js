@@ -9,15 +9,18 @@ var numClient = 0
 io.on('connection', (socket) => {
   var addedClient = false
   var currentdate = new Date()
-  socket.username = 'Anonymous ' + currentdate.getDay() + currentdate.getMilliseconds()
   numClient++
+  socket.username = 'Anonymous ' + currentdate.getDay() + numClient + currentdate.getMilliseconds()
   socket.emit('get_data', {
     numClient: numClient
   })
     // BC globaly that some Boiiii connected to our server
     socket.broadcast.emit('user_joined',{
       username : socket.username,
-      numClient: numClient
+      numClient: numClient,
+      timeHour: currentdate.getHours().toLocaleString(),
+      timeMin: currentdate.getMinutes().toLocaleString(),
+      timeSec: currentdate.getSeconds().toLocaleString()
     })
 
   // chat behavior to self
@@ -38,7 +41,10 @@ io.on('connection', (socket) => {
     numClient--
     socket.broadcast.emit('user_left',{
       username: socket.username,
-      numClient: numClient
+      numClient: numClient,
+      timeHour: currentdate.getHours().toLocaleString(),
+      timeMin: currentdate.getMinutes().toLocaleString(),
+      timeSec: currentdate.getSeconds().toLocaleString()
     })
   })
 })
