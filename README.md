@@ -39,7 +39,7 @@ DB_NAME = realtimechat
 
 After install all dependency we need, then run it :
 
-<b><i>make sure mongodb is running and you have done create your database</i>
+<b><i>make sure mongodb is running and you have done create your database</i></b>
 
 for npm user :
 ``` bash
