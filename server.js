@@ -1,21 +1,25 @@
 //require dotenv
-require('dotenv').config()
+require('now-env')
 
-const app = require('express')()
-const server = require('http').Server(app)
-const io = require('socket.io')(server)
-const mongo = require('mongodb').MongoClient
+const express = require('express'),
+      app = require('express')(),
+      server = require('http').Server(app),
+      io = require('socket.io')(server),
+  mongo = require('mongodb').MongoClient
+var urlMongo = process.env.DB_URL,
+  numClient = 0
 
+// engine setup
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html')
 })
 
-var urlMongo = process.env.DB_URL
-var numClient = 0
+// middleware
+app.use(express.static(__dirname + '/static'));
 
 mongo.connect(urlMongo,{useNewUrlParser: true}, function(err, database) {
   console.log("Connected successfully to server");
-  const dbCore = database.db(process.env.DB_NAME)
+  let dbCore = database.db(process.env.DB_NAME)
   var messagesCollection = dbCore.collection('messages')
 
   io.on('connection', (socket) => {
@@ -63,6 +67,7 @@ mongo.connect(urlMongo,{useNewUrlParser: true}, function(err, database) {
         // emiting to client command
         console.log('cleared')
         socket.emit('cleared')
+        socket.broadcast.emit('cleared')
       })
     })
 

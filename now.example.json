@@ -1,0 +1,6 @@
+{
+    "env": {
+        "DB_URL": "secret-url",
+        "DB_NAME": "secret-name"
+    }
+}

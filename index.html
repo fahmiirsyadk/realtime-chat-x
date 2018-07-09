@@ -42,92 +42,13 @@
         <link rel="manifest" href="https://assets.zeit.co/raw/upload/front/front/favicon/manifest.json" class="jsx-551147592 next-head">
         <link rel="mask-icon" href="https://assets.zeit.co/image/upload/front/favicon/safari-pinned-tab.svg" color="#ffffff" class="jsx-551147592 next-head">
         <link rel="shortcut icon" href="https://assets.zeit.co/image/upload/front/favicon/favicon.ico" class="jsx-551147592 next-head">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
 
     <body>
+        <!-- apply critical css -->
         <style>
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-
-            body {
-                font: 13px Helvetica, Arial;
-                background: #000000;
-            }
-
-            form {
-                background: grey;
-                padding: 10px;
-                position: fixed;
-                bottom: 0;
-                width: 100%;
-            }
-
-            form input {
-                border: 0;
-                padding: 10px;
-                width: 90%;
-                margin-right: .5%;
-            }
-
-            @media only screen and (max-width: 768px) {
-                form input {
-                    width: 80vw;
-                }
-                form button {
-                    width: 50px !important;
-                }
-            }
-
-            form button {
-                width: 9%;
-                background: rgb(130, 224, 255);
-                border: none;
-                padding: 10px;
-            }
-
-            #messages {
-                list-style-type: none;
-                margin: 0;
-                padding-bottom: 60px;
-                overflow-y: auto;
-            }
-
-            #messages li {
-                padding: 5px 10px;
-                background: rgb(203, 209, 243);
-                color: blue !important;
-            }
-
-            #messages p {
-                color: orangered;
-            }
-
-            #messages li:nth-child(odd) {
-                background: #eee;
-                color: blue !important;
-            }
-
-            #feedback {
-                width: 100vw;
-                display: flex;
-                flex-flow: row wrap;
-                justify-content: center;
-                color: #eee;
-                height: 25px;
-                border-bottom: 1px solid #eee;
-                margin-bottom: 3px;
-            }
-
-            #client {
-                color: green;
-                padding: 3px;
-                margin: 3px;
-                border: 1px solid green;
-                border-radius: 3px;
-            }
+            *{margin:0;padding:0;box-sizing:border-box}body{font:13px Helvetica,Arial;background:#000000}form{background:grey;padding:10px;position:fixed;bottom:0;width:100%}form input{border:0;padding:10px;width:90%;margin-right:.5%}@media only screen and (max-width:768px){form input{width:80vw}form button{width:50px!important}}form button{width:9%;background:rgb(130,224,255);border:none;padding:10px}#messages{list-style-type:none;margin:0;padding-bottom:60px;overflow-y:auto}#feedback{width:100vw;display:flex;flex-flow:row wrap;justify-content:center;color:#eee;height:25px;border-bottom:1px solid #eee;margin-bottom:3px}#client{color:green;padding:3px;margin:3px;border:1px solid green;border-radius:3px}
         </style>
         <div class="feedback__wrap">
             <p id="client">1 user online</p>
@@ -139,11 +60,8 @@
             <input id="m" name="namem" autocomplete="off" />
             <button>Send</button>
         </form>
-
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
         <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-
         <script>
             $(() => {
                 console.log('app version: 0.0.4 Debug mode')
@@ -164,22 +82,22 @@
                 sendMessage.submit((e) => {
                     e.preventDefault();
                     // handle clear chat send to server
-                    var check = document.getElementById("m").value == "/godmode"
-                    var sclear = document.getElementById("m").value == "/clear"
+                    let check = document.getElementById("m").value == "/godmode"
+                    let sclear = document.getElementById("m").value == "/clear"
                     if (check) {
                         console.log('u ar god')
                         socket.emit('clear')
                         message.val('')
                     }
                     if (!check) {
-                        if(sclear){
+                        if (sclear) {
                             chatlog.empty()
                             message.val('')
-                        }else{
+                        } else {
                             socket.emit('chat_message', {
-                            message: message.val()
-                        })
-                        message.val('')
+                                message: message.val()
+                            })
+                            message.val('')
                         }
                     }
                 })
@@ -195,7 +113,8 @@
                     if (data.length) {
                         // data contruction get the all list then print it
                         for (var x = 0; x < data.length; x++) {
-                            chatlog.append('<li '+'id="'+ data[x]._id +'">' + '[ ' + data[x].user + ' ] ⫸ ●'+ data[x].text +'</li>')
+                            chatlog.append('<li ' + 'id="' + data[x]._id + '">' + '[ ' + data[x].user +
+                                ' ] ⫸ ●' + data[x].text + '</li>')
                         }
                     }
                 })
