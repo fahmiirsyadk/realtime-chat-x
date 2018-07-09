@@ -1,4 +1,4 @@
-# Realtime-chat-x-static
+# Realtime-chat-x
 
 Realtime chat web app using Node.js, Express.js and Socket.io
 
@@ -26,13 +26,17 @@ cd realtime-chat-x-static
 yarn
 ```
 
-After installation complete, rename `.env.example` to `.env`
+After installation complete, rename `now-example.json` to `now.json`
 
-then edit `.env` and fill it, example:
+then edit `now.json` and fill it, example:
 
-```bash
-DB_URL= url_goes_here
-DB_NAME = realtimechat
+```json
+{
+    "env": {
+        "DB_URL": "mongodb://localhost:27031/realtimechat",
+        "DB_NAME": "realtimechat"
+    }
+}
 ```
 
 ## Usage
@@ -63,5 +67,5 @@ If you have a better idea to improve realtime-chat-x, open issue or create pull 
 
 ## License
 
-Realtime-chat-x-static (this project) is licensed under MIT license.
+Realtime-chat-x (this project) is licensed under MIT license.
 
