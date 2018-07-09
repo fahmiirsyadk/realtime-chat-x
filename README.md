@@ -26,7 +26,7 @@ cd realtime-chat-x-static
 yarn
 ```
 
-After installation complete, rename `now-example.json` to `now.json`
+After installation complete, rename `now.example.json` to `now.json`
 
 then edit `now.json` and fill it, example:
 
