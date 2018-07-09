@@ -14,15 +14,15 @@ Realtime chat web app using Node.js, Express.js and Socket.io
 then install with the following commands below:
 
 ``` bash
-git clone https://github.com/blubMe/realtime-chat-x-static.git
-cd realtime-chat-x-static
+git clone https://github.com/blubMe/realtime-chat-x.git
+cd realtime-chat-x
 npm install
 ```
 
 for yarn user :
 ``` bash
-git clone https://github.com/blubMe/realtime-chat-x-static.git
-cd realtime-chat-x-static
+git clone https://github.com/blubMe/realtime-chat-x.git
+cd realtime-chat-x
 yarn
 ```
 
