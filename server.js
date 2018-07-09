@@ -1,3 +1,6 @@
+//require dotenv
+require('dotenv').config()
+
 const app = require('express')()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
@@ -7,13 +10,12 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html')
 })
 
-var urlMongo = 'mongodb://chatx:jkl234jkl13@ds129831.mlab.com:29831/chatx'
+var urlMongo = process.env.DB_URL
 var numClient = 0
 
 mongo.connect(urlMongo,{useNewUrlParser: true}, function(err, database) {
-  // assert.equal(null, err);
   console.log("Connected successfully to server");
-  const dbCore = database.db('chatx')
+  const dbCore = database.db(process.env.DB_NAME)
   var messagesCollection = dbCore.collection('messages')
 
   io.on('connection', (socket) => {

@@ -165,17 +165,22 @@
                     e.preventDefault();
                     // handle clear chat send to server
                     var check = document.getElementById("m").value == "/godmode"
+                    var sclear = document.getElementById("m").value == "/clear"
                     if (check) {
                         console.log('u ar god')
                         socket.emit('clear')
                         message.val('')
                     }
                     if (!check) {
-                        console.log('not')
-                        socket.emit('chat_message', {
+                        if(sclear){
+                            chatlog.empty()
+                            message.val('')
+                        }else{
+                            socket.emit('chat_message', {
                             message: message.val()
                         })
                         message.val('')
+                        }
                     }
                 })
 
@@ -186,7 +191,6 @@
 
                 //emitting chat history from db collections
                 socket.on('chat_history', (data) => {
-                    console.log(data)
                     // check data length
                     if (data.length) {
                         // data contruction get the all list then print it
