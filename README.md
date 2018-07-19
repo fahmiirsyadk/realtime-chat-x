@@ -1,5 +1,7 @@
 # Realtime-chat-x
 
+![chat preview](https://i.imgur.com/ORyHJln.png)
+
 Realtime chat web app using Node.js, Express.js and Socket.io
 
 <b>Help me to improve with some pull request or open issues</b>
